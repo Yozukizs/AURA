@@ -25,13 +25,15 @@ jobs:
         with:
           workspaces: src-tauri -> target
       - name: Install JavaScript dependencies
+        working-directory: ./AURA
         run: npm install
       - name: Compile Windows installer
+        working-directory: ./AURA
         run: npm run desktop:build
       - name: Upload Windows installer
         uses: actions/upload-artifact@v4
         with:
           name: AURA-Windows-Installer
-          path: src-tauri/target/release/bundle/nsis/*.exe
+          path: AURA/src-tauri/target/release/bundle/nsis/*.exe
           if-no-files-found: error
   
